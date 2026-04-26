@@ -18,36 +18,36 @@ const TextWipe: React.FC<{
   progress,
   range,
 }) => {
-  const wipeWidth = useTransform(progress, range, ['0%', '100%']);
+    const wipeWidth = useTransform(progress, range, ['0%', '100%']);
 
-  return (
-    <div style={{ position: 'relative', display: 'inline-block', lineHeight: 1 }}>
-      {/* Base layer — always renders, color = baseColor */}
-      <div style={{ ...style, color: baseColor, display: 'block' }}>{text}</div>
-      {/* Reveal layer — clips from left to right */}
-      <motion.div
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          bottom: 0,
-          width: wipeWidth,
-          overflow: 'hidden',
-          display: 'block',
-        }}
-      >
-        <div style={{
-          ...style,
-          color: revealColor,
-          whiteSpace: 'nowrap',
-          display: 'block',
-        }}>
-          {text}
-        </div>
-      </motion.div>
-    </div>
-  );
-};
+    return (
+      <div style={{ position: 'relative', display: 'inline-block', lineHeight: 1 }}>
+        {/* Base layer — always renders, color = baseColor */}
+        <div style={{ ...style, color: baseColor, display: 'block' }}>{text}</div>
+        {/* Reveal layer — clips from left to right */}
+        <motion.div
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            bottom: 0,
+            width: wipeWidth,
+            overflow: 'hidden',
+            display: 'block',
+          }}
+        >
+          <div style={{
+            ...style,
+            color: revealColor,
+            whiteSpace: 'nowrap',
+            display: 'block',
+          }}>
+            {text}
+          </div>
+        </motion.div>
+      </div>
+    );
+  };
 
 // ─── Main Section ─────────────────────────────────────────────────────────────
 //
@@ -63,7 +63,7 @@ const TextWipe: React.FC<{
 //  [0.55 – 0.70]  trophy.png rises fastest, snaps into place
 //  [0.70 – 1.00]  full scene holds, slow drift upward
 
-const HouseCup: React.FC = () => {
+const HouseCup: React.FC<{ onExplore?: () => void }> = ({ onExplore }) => {
   const ref = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
@@ -80,11 +80,15 @@ const HouseCup: React.FC = () => {
   // Trophy snaps up last and fastest
   const trophyY = useTransform(scrollYProgress, [0.48, 0.62], ['110vh', '0vh']);
 
-  // Slow drift once everything is in
-  const sceneDrift = useTransform(scrollYProgress, [0.70, 1.00], ['0px', '-20px']);
+  // Slow drift once everything is in, giving room for the button at the bottom
+  const sceneDrift = useTransform(scrollYProgress, [0.70, 1.00], ['0vh', '-8vh']);
 
   // Spotlight blooms as cup arrives
   const glowOp = useTransform(scrollYProgress, [0.18, 0.40], [0, 1]);
+
+  // Button slides up and fades in after trophies settle
+  const buttonOp = useTransform(scrollYProgress, [0.65, 0.75], [0, 1]);
+  const buttonY = useTransform(scrollYProgress, [0.65, 0.75], ['40px', '0px']);
 
   return (
     <div
@@ -214,6 +218,52 @@ const HouseCup: React.FC = () => {
             />
           </motion.div>
 
+        </motion.div>
+
+        {/* LAYER 4: Explore More Button — slides up and fades in at the very end */}
+        {/* Kept outside the scene wrapper so it stays locked at the bottom while elements drift up */}
+        <motion.div style={{
+          position: 'absolute',
+          bottom: '2vh',
+          left: '50%',
+          x: '-50%',
+          y: buttonY,
+          zIndex: 20,
+          opacity: buttonOp,
+          pointerEvents: 'auto',
+        }}>
+          <button
+            onClick={onExplore}
+            style={{
+              padding: '1rem 3rem',
+              fontSize: '1rem',
+              fontWeight: 700,
+              textTransform: 'uppercase',
+              letterSpacing: '4px',
+              color: '#c9a84c',
+              backgroundColor: 'rgba(6, 6, 15, 0.7)',
+              border: '1px solid rgba(201,168,76,0.5)',
+              borderRadius: '50px',
+              cursor: 'pointer',
+              backdropFilter: 'blur(8px)',
+              boxShadow: '0 0 20px rgba(201,168,76,0.1)',
+              transition: 'all 0.3s ease'
+            }}
+            onMouseOver={(e) => {
+              e.currentTarget.style.transform = 'translateY(-2px)';
+              e.currentTarget.style.boxShadow = '0 10px 25px rgba(201,168,76,0.3)';
+              e.currentTarget.style.backgroundColor = 'rgba(6, 6, 15, 0.9)';
+              e.currentTarget.style.border = '1px solid rgba(201,168,76,0.8)';
+            }}
+            onMouseOut={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow = '0 0 20px rgba(201,168,76,0.1)';
+              e.currentTarget.style.backgroundColor = 'rgba(6, 6, 15, 0.7)';
+              e.currentTarget.style.border = '1px solid rgba(201,168,76,0.5)';
+            }}
+          >
+            Explore More
+          </button>
         </motion.div>
 
       </div>

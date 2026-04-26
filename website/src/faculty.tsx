@@ -1,7 +1,17 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
-// 1. Title Wipe — unchanged
+// ─── Shared Theme ────────────────────────────────────────────────────────────
+
+const theme = {
+  bg: '#fdfbf7',
+  textBase: '#efe8dd',
+  textDark: '#1a1a1a',
+  gold: '#c9a063',
+  goldLight: 'rgba(201, 160, 99, 0.2)',
+};
+
+// 1. Title Wipe — unchanged logic, just updated colors
 const TitleWipe: React.FC<{ text: string }> = ({ text }) => {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -30,10 +40,11 @@ const TitleWipe: React.FC<{ text: string }> = ({ text }) => {
           alignItems: 'center',
           padding: '0 10vw',
           overflow: 'hidden',
+          backgroundColor: theme.bg,
         }}
       >
         <div style={{ position: 'relative', display: 'inline-block' }}>
-          <h2 style={{ ...textStyle, color: '#e0e0e0' }}>{text}</h2>
+          <h2 style={{ ...textStyle, color: theme.textBase }}>{text}</h2>
           <motion.div
             style={{
               position: 'absolute',
@@ -44,7 +55,7 @@ const TitleWipe: React.FC<{ text: string }> = ({ text }) => {
               overflow: 'hidden',
             }}
           >
-            <h2 style={{ ...textStyle, color: '#000' }}>{text}</h2>
+            <h2 style={{ ...textStyle, color: theme.textDark }}>{text}</h2>
           </motion.div>
         </div>
       </div>
@@ -64,24 +75,27 @@ const TextWipe: React.FC<{
 
   const textStyle: React.CSSProperties = isRole
     ? {
-        fontSize: '0.75rem',
-        fontWeight: 700,
-        textTransform: 'uppercase' as const,
-        letterSpacing: '0.12em',
-        margin: '0 0 8px 0',
-        whiteSpace: 'nowrap' as const,
+        fontSize: '0.85rem',
+        fontWeight: 800,
+        textTransform: 'uppercase',
+        letterSpacing: '0.15em',
+        margin: '0 0 12px 0',
+        whiteSpace: 'nowrap',
       }
     : {
-        fontSize: '2rem',
+        fontSize: 'clamp(1.5rem, 3vw, 2.5rem)',
         fontWeight: 900,
         lineHeight: 1.1,
         margin: 0,
-        whiteSpace: 'nowrap' as const,
+        whiteSpace: 'nowrap',
       };
+
+  const baseColor = isRole ? theme.goldLight : theme.textBase;
+  const revealColor = isRole ? theme.gold : theme.textDark;
 
   return (
     <div style={{ position: 'relative', display: 'inline-block' }}>
-      <div style={{ ...textStyle, color: '#e0e0e0' }}>{text}</div>
+      <div style={{ ...textStyle, color: baseColor }}>{text}</div>
       <motion.div
         style={{
           position: 'absolute',
@@ -96,7 +110,7 @@ const TextWipe: React.FC<{
         <div
           style={{
             ...textStyle,
-            color: '#000',
+            color: revealColor,
             position: 'absolute',
             top: 0,
             left: align === 'left' ? 0 : 'auto',
@@ -111,19 +125,20 @@ const TextWipe: React.FC<{
 };
 
 // 3. Member card
-// Photo: 22vw wide, 4:5 ratio → height = 27.5vw, capped at 260×325px
 interface MemberProps {
   name: string;
   role: string;
+  desc: string;
   photo: string;
   side: 'left' | 'right';
   top: string;
   xImage: any;
   scrollYProgress: any;
   textEntry: [number, number];
+  index: string;
 }
 
-const MemberCard: React.FC<MemberProps> = ({
+const MemberCard: React.FC<Omit<MemberProps, 'desc'>> = ({
   name,
   role,
   photo,
@@ -132,12 +147,13 @@ const MemberCard: React.FC<MemberProps> = ({
   xImage,
   scrollYProgress,
   textEntry,
+  index,
 }) => {
-  const photoW = 'min(18vw, 210px)';
-  const photoH = 'min(22.5vw, 262px)';
+  const photoW = 'clamp(140px, 16vw, 220px)';
+  const photoH = 'clamp(180px, 20vw, 280px)';
 
-  const containerLeft  = side === 'left'  ? '7vw'  : 'auto';
-  const containerRight = side === 'right' ? '7vw'  : 'auto';
+  const containerLeft  = side === 'left'  ? '12vw' : 'auto';
+  const containerRight = side === 'right' ? '6vw' : 'auto';
 
   const wipeAlign: 'left' | 'right' = side === 'left' ? 'left' : 'right';
 
@@ -152,17 +168,46 @@ const MemberCard: React.FC<MemberProps> = ({
         display: 'flex',
         flexDirection: side === 'left' ? 'row' : 'row-reverse',
         alignItems: 'center',
+        zIndex: 10,
       }}
     >
-      {/* Photo */}
+      {/* Background Number */}
+      <div style={{
+        position: 'absolute',
+        top: '50%',
+        transform: 'translateY(-50%)',
+        [side === 'left' ? 'left' : 'right']: '15vw',
+        fontSize: '18vw',
+        fontWeight: 900,
+        color: 'transparent',
+        WebkitTextStroke: `1px rgba(201, 160, 99, 0.15)`,
+        zIndex: 0,
+        pointerEvents: 'none',
+        lineHeight: 0.8,
+      }}>
+        {index}
+      </div>
+
+      {/* Photo Container */}
       <motion.div
         style={{
           width: photoW,
           height: photoH,
           flexShrink: 0,
+          position: 'relative',
           x: xImage,
+          zIndex: 2,
         }}
       >
+        {/* Shadow offset box */}
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          backgroundColor: '#d0a266',
+          transform: side === 'left' ? 'translate(-15px, 15px)' : 'translate(15px, 15px)',
+          borderRadius: '8px',
+          zIndex: 0
+        }} />
         <img
           src={photo}
           alt={name}
@@ -170,9 +215,9 @@ const MemberCard: React.FC<MemberProps> = ({
             width: '100%',
             height: '100%',
             objectFit: 'cover',
-            borderRadius: '3px',
-            backgroundColor: '#ddd',
-            display: 'block',
+            borderRadius: '8px',
+            position: 'relative',
+            zIndex: 1,
           }}
         />
       </motion.div>
@@ -180,12 +225,12 @@ const MemberCard: React.FC<MemberProps> = ({
       {/* Vertical accent line */}
       <div
         style={{
-          width: '3px',
-          alignSelf: 'stretch',
-          backgroundColor: '#000',
+          width: '2px',
+          height: '110%',
+          backgroundColor: theme.textDark,
           flexShrink: 0,
-          margin: '0 2vw',
-          borderRadius: '2px',
+          margin: '0 4vw',
+          zIndex: 2,
         }}
       />
 
@@ -195,15 +240,24 @@ const MemberCard: React.FC<MemberProps> = ({
           display: 'flex',
           flexDirection: 'column',
           alignItems: side === 'left' ? 'flex-start' : 'flex-end',
+          textAlign: side === 'left' ? 'left' : 'right',
+          zIndex: 2,
+          position: 'relative',
         }}
       >
-        <TextWipe
-          text={role}
-          isRole
-          scrollYProgress={scrollYProgress}
-          delay={textEntry}
-          align={wipeAlign}
-        />
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
+          <div style={{ width: '24px', height: '24px', borderRadius: '50%', backgroundColor: theme.gold, color: theme.bg, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px' }}>
+            {side === 'left' ? '👤' : '👥'}
+          </div>
+          <TextWipe
+            text={role}
+            isRole
+            scrollYProgress={scrollYProgress}
+            delay={textEntry}
+            align={wipeAlign}
+          />
+        </div>
+        
         <TextWipe
           text={name}
           scrollYProgress={scrollYProgress}
@@ -216,10 +270,6 @@ const MemberCard: React.FC<MemberProps> = ({
 };
 
 // 4. Z-Layout Panel
-// Photos are taller now so spacing is adjusted:
-//   HOD:    top 3vh
-//   Pramod: top 34vh
-//   Gauri:  top 65vh
 const ZFacultyPanel: React.FC = () => {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -239,21 +289,61 @@ const ZFacultyPanel: React.FC = () => {
           top: 0,
           height: '100vh',
           overflow: 'hidden',
-          backgroundColor: '#fff',
+          backgroundColor: theme.bg,
         }}
       >
+        {/* Side decorative text */}
+        <div style={{ position: 'absolute', top: '5vh', left: '2vw', writingMode: 'vertical-rl', transform: 'rotate(180deg)', color: theme.textDark, fontWeight: 700, letterSpacing: '4px', fontSize: '0.8rem', display: 'flex', alignItems: 'center', gap: '1rem', opacity: 0.6 }}>
+          <span>OUR FACULTY</span>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+            <div style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: theme.gold }} />
+            <div style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: theme.textDark, opacity: 0.3 }} />
+            <div style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: theme.textDark, opacity: 0.3 }} />
+          </div>
+        </div>
+
+        <div style={{ position: 'absolute', bottom: '5vh', left: '2vw', writingMode: 'vertical-rl', transform: 'rotate(180deg)', color: theme.textDark, fontWeight: 600, letterSpacing: '2px', fontSize: '0.7rem', opacity: 0.4 }}>
+          THE TEAM BEHIND OUR SUCCESS
+        </div>
+
+        {/* Decorative Background Elements */}
+        <div style={{ position: 'absolute', top: '-10%', right: '-5%', width: '40vw', height: '40vw', borderRadius: '50%', border: `1px solid ${theme.goldLight}`, opacity: 0.5, pointerEvents: 'none' }} />
+        <div style={{ position: 'absolute', top: '-5%', right: '-10%', width: '50vw', height: '50vw', borderRadius: '50%', border: `1px solid ${theme.goldLight}`, opacity: 0.3, pointerEvents: 'none' }} />
+        
+        <div style={{ position: 'absolute', bottom: '-20%', right: '10%', width: '40vw', height: '40vw', borderRadius: '50%', background: `radial-gradient(circle, ${theme.goldLight} 0%, transparent 60%)`, filter: 'blur(40px)', pointerEvents: 'none' }} />
+        <div style={{ position: 'absolute', bottom: '-5%', left: '-5%', width: '30vw', height: '30vw', borderRadius: '50%', border: `1px solid ${theme.goldLight}`, opacity: 0.4, pointerEvents: 'none' }} />
+
+        {/* Dotted Grid Decoration */}
+        <div style={{ position: 'absolute', top: '40%', left: '5%', width: '100px', height: '100px', backgroundImage: `radial-gradient(${theme.gold} 1px, transparent 1px)`, backgroundSize: '15px 15px', opacity: 0.2, pointerEvents: 'none' }} />
+        <div style={{ position: 'absolute', bottom: '20%', right: '5%', width: '100px', height: '100px', backgroundImage: `radial-gradient(${theme.gold} 1px, transparent 1px)`, backgroundSize: '15px 15px', opacity: 0.2, pointerEvents: 'none' }} />
+
+        {/* Curved Abstract Lines matching reference */}
+        <svg style={{ position: 'absolute', top: 0, right: 0, width: '40vw', height: '40vw', pointerEvents: 'none', opacity: 0.3 }} viewBox="0 0 100 100" fill="none">
+          <circle cx="100" cy="0" r="80" stroke={theme.gold} strokeWidth="0.5" />
+          <circle cx="100" cy="0" r="60" stroke={theme.gold} strokeWidth="0.3" />
+          <circle cx="100" cy="0" r="40" stroke={theme.gold} strokeWidth="0.2" />
+        </svg>
+
+        <svg style={{ position: 'absolute', bottom: 0, left: 0, width: '50vw', height: '50vw', pointerEvents: 'none', opacity: 0.3 }} viewBox="0 0 100 100" fill="none">
+          <circle cx="0" cy="100" r="80" stroke={theme.gold} strokeWidth="0.5" />
+          <circle cx="0" cy="100" r="60" stroke={theme.gold} strokeWidth="0.3" />
+          <circle cx="0" cy="100" r="40" stroke={theme.gold} strokeWidth="0.2" />
+        </svg>
+
         <MemberCard
+          index="01"
           name="Dr. Neta Thakre"
           role="Head of Department"
           photo="photo.jpg"
           side="left"
-          top="3vh"
+          top="8vh"
           xImage={xHod}
           scrollYProgress={scrollYProgress}
           textEntry={[0.15, 0.28]}
         />
 
         <MemberCard
+          index="02"
           name="Pramod Patil"
           role="Coordinator I"
           photo="image.png"
@@ -265,6 +355,7 @@ const ZFacultyPanel: React.FC = () => {
         />
 
         <MemberCard
+          index="03"
           name="Gauri Pauranic"
           role="Coordinator II"
           photo="team.jpeg"
@@ -282,10 +373,9 @@ const ZFacultyPanel: React.FC = () => {
 // 5. Main Page
 const Faculty: React.FC = () => {
   return (
-    <section style={{ backgroundColor: '#fff' }}>
+    <section style={{ backgroundColor: theme.bg }}>
       <TitleWipe text="FACULTY" />
       <ZFacultyPanel />
-      <div style={{ height: '30vh' }} />
     </section>
   );
 };

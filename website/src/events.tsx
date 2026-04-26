@@ -1,5 +1,5 @@
-import React, { useRef, useState, useEffect, useCallback } from 'react';
-import { motion, AnimatePresence, useScroll } from 'framer-motion';
+import React, { useState, useCallback } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
@@ -61,79 +61,80 @@ const EVENTS: Event[] = [
   },
 ];
 
-// Each event occupies this many vh of scroll
-const STEP_VH = 120;
-const TOTAL_VH = EVENTS.length * STEP_VH;
-
 // ─── Achievements ─────────────────────────────────────────────────────────────
 
 const Achievements: React.FC = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const rightRef     = useRef<HTMLDivElement>(null);
-  const rowRefs      = useRef<(HTMLDivElement | null)[]>([]);
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isClickNav, setIsClickNav]   = useState(false);
 
-  const { scrollYProgress } = useScroll({
-    target:  containerRef,
-    offset: ['start start', 'end end'],
-  });
-
-  // ── Scroll → active index
-  useEffect(() => {
-    const unsub = scrollYProgress.on('change', v => {
-      if (isClickNav) return; // ignore scroll events while click-navigating
-      const idx = Math.min(
-        Math.floor(v * EVENTS.length),
-        EVENTS.length - 1
-      );
-      setActiveIndex(idx);
-    });
-    return unsub;
-  }, [scrollYProgress, isClickNav]);
-
-  // ── Click nav: scroll container to that event's position
   const goToEvent = useCallback((i: number) => {
-    if (!containerRef.current) return;
-    setIsClickNav(true);
     setActiveIndex(i);
-
-    const containerTop = containerRef.current.offsetTop;
-    const totalH       = containerRef.current.scrollHeight;
-    const segH         = totalH / EVENTS.length;
-
-    window.scrollTo({ top: containerTop + segH * i + 2, behavior: 'smooth' });
-
-    // Re-enable scroll tracking after transition settles
-    setTimeout(() => setIsClickNav(false), 800);
   }, []);
 
   const active = EVENTS[activeIndex];
 
   return (
-    <div
-      ref={containerRef}
-      style={{ height: `${TOTAL_VH}vh`, position: 'relative', backgroundColor: '#fff' }}
-    >
-      {/* ── STICKY SPLIT FRAME ── */}
-      <div style={{
-        position: 'sticky',
-        top: 0,
-        height: '100vh',
-        display: 'grid',
-        gridTemplateColumns: '1fr 1fr',
-        overflow: 'hidden',
-        backgroundColor: '#fff',
-      }}>
+    <>
+      <style>{`
+        .events-container {
+          display: flex;
+          height: 100vh;
+          width: 100%;
+          overflow: hidden;
+          background-color: #fff;
+        }
+        .events-left {
+          flex: 1;
+          position: relative;
+          overflow: hidden;
+          background-color: #111;
+        }
+        .events-right {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          overflow-y: auto;
+          background-color: #fff;
+        }
+        .events-header {
+          padding: 36px 52px 24px;
+        }
+        .accordion-btn {
+          padding: 0 52px;
+          min-height: 68px;
+        }
+        .accordion-content {
+          padding: 0 52px 28px;
+          padding-left: calc(52px + 3px + 1.2rem + 28px + 1.2rem);
+        }
 
+        @media (max-width: 768px) {
+          .events-container {
+            flex-direction: column;
+          }
+          .events-left {
+            flex: 0 0 45vh; /* Fixed height for image on mobile */
+          }
+          .events-right {
+            flex: 1;
+          }
+          .events-header {
+            padding: 24px 24px 16px;
+          }
+          .accordion-btn {
+            padding: 0 24px;
+            min-height: 54px;
+          }
+          .accordion-content {
+            padding: 0 24px 24px;
+            padding-left: calc(24px + 3px + 1.2rem + 28px + 1.2rem);
+          }
+        }
+      `}</style>
+      <div id="events" className="events-container">
         {/* ════════════════════════════════════════
             LEFT — full-height image panel
         ════════════════════════════════════════ */}
-        <div style={{
-          position: 'relative',
-          overflow: 'hidden',
-          backgroundColor: '#111',
-        }}>
+        <div className="events-left">
           <AnimatePresence mode="sync">
             <motion.div
               key={activeIndex}
@@ -218,18 +219,9 @@ const Achievements: React.FC = () => {
         {/* ════════════════════════════════════════
             RIGHT — accordion list
         ════════════════════════════════════════ */}
-        <div
-          ref={rightRef}
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            height: '100vh',
-            overflow: 'hidden',
-          }}
-        >
+        <div className="events-right">
           {/* Section header */}
-          <div style={{
-            padding: '36px 52px 24px',
+          <div className="events-header" style={{
             borderBottom: '1px solid #ebebeb',
             flexShrink: 0,
           }}>
@@ -266,7 +258,6 @@ const Achievements: React.FC = () => {
             {EVENTS.map((ev, i) => (
               <AccordionRow
                 key={i}
-                ref={el => { rowRefs.current[i] = el; }}
                 event={ev}
                 isOpen={activeIndex === i}
                 onOpen={() => goToEvent(i)}
@@ -276,21 +267,20 @@ const Achievements: React.FC = () => {
         </div>
 
       </div>
-    </div>
+    </>
   );
 };
 
 // ─── Accordion Row ────────────────────────────────────────────────────────────
 
-const AccordionRow = React.forwardRef<HTMLDivElement, {
+const AccordionRow: React.FC<{
   event:   Event;
   isOpen:  boolean;
   onOpen:  () => void;
-}>(({ event, isOpen, onOpen }, ref) => {
+}> = ({ event, isOpen, onOpen }) => {
 
   return (
     <div
-      ref={ref}
       style={{
         borderBottom: '1px solid #ebebeb',
       }}
@@ -298,17 +288,16 @@ const AccordionRow = React.forwardRef<HTMLDivElement, {
       {/* Header */}
       <button
         onClick={onOpen}
+        className="accordion-btn"
         style={{
           width: '100%',
           background: 'none',
           border: 'none',
           cursor: 'pointer',
-          padding: '0 52px',
           display: 'flex',
           alignItems: 'center',
           gap: '1.2rem',
           textAlign: 'left',
-          minHeight: '68px',
         }}
       >
         {/* Animated accent bar */}
@@ -418,10 +407,7 @@ const AccordionRow = React.forwardRef<HTMLDivElement, {
           initial={{ y: 12 }}
           animate={{ y: isOpen ? 0 : 12 }}
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-          style={{
-            padding: '0 52px 28px',
-            paddingLeft: 'calc(52px + 3px + 1.2rem + 28px + 1.2rem)',
-          }}
+          className="accordion-content"
         >
           {/* Date + place */}
           <div style={{
@@ -463,8 +449,6 @@ const AccordionRow = React.forwardRef<HTMLDivElement, {
       </motion.div>
     </div>
   );
-});
-
-AccordionRow.displayName = 'AccordionRow';
+};
 
 export default Achievements;

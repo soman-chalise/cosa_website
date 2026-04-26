@@ -1,0 +1,368 @@
+[
+  {
+    "sport": "1KM",
+    "gender": "Men",
+    "players": [
+      "UDAY SANTOSH DEORE  BE",
+      "VISHAL PRADIP PARDESHI  TE",
+      "Sports  Representative"
+    ]
+  },
+  {
+    "sport": "ATHLETICS",
+    "gender": "Men",
+    "players": [
+      "100m  Race  Uday  Santosh  Deore  BE",
+      "Siddhant  Prashant  Ghangale  SE",
+      "200m  Race  Khemraj  Chandan  Rajput  TE",
+      "Amol  Somnath  Gawali  TE",
+      "*4  Relay  Uday  Santosh  Deore  BE",
+      "Khemraj  Chandan  Rajput  TE",
+      "Vishal  Pradip  Pardeshi  TE",
+      "Yashodhan  Mangesh Godse  TE",
+      "Siddhant  Prashant  Ghangale  SE",
+      "*4  Relay  Uday  Santosh  Deore  BE",
+      "Khemraj  Chandan  Rajput  TE",
+      "Vishal  Pradip Pardeshi  TE",
+      "Amol  Somnath  Gawali  TE",
+      "Naresh  Liladhar  Thapa  TE",
+      "Sports  Representative"
+    ]
+  },
+  {
+    "sport": "BADMINTON",
+    "gender": "Men",
+    "players": [
+      "MANISH BHOJRAJ AYER  BE",
+      "AMOL SOMNATH GAWALI  TE",
+      "ROHAN RAKESH GHUTE  BE",
+      "RITESH VILAS TAYADE  TE",
+      "Sports  Representative"
+    ]
+  },
+  {
+    "sport": "BASKETBALL",
+    "gender": "Men",
+    "players": [
+      "HAMIZ AFZAL KHAN  (C) BE",
+      "AMOL SOMNATH GAWALI  TE",
+      "VISHAL PRAD IP PARDESHI  TE",
+      "NARESH BEDBAHADUR THAPA  TE",
+      "OM NARESH AHIRE  SE",
+      "SUSHANK SHIVAJI JADHAV  SE",
+      "KHEMRAJ CHANDAN RAJPUT  TE",
+      "MANISH BHOJRAJ AY ER BE",
+      "GUNJAN GOVARDHAN JADHAV  BE",
+      "SACHIN RAJENDRA SURYAWANSHI  BE",
+      "SAGAR LILADAR PATIL  BE",
+      "Sports  Representative"
+    ]
+  },
+  {
+    "sport": "CARROM",
+    "gender": "Men",
+    "players": [
+      "HAMIZ AFZAL KHAN  BE",
+      "SOMAN DILARAM  CHALISE  TE",
+      "NARESH BEDBAHADUR THAPA  TE",
+      "KHEMRAJ CHAN DAN RAJPUT  TE",
+      "Sports  Representative"
+    ]
+  },
+  {
+    "sport": "CHESS",
+    "gender": "Men",
+    "players": [
+      "PARAG SUDHIR MAHAJAN  BE",
+      "NARESH BEDBAHADUR THAPA  TE",
+      "Sports  Representative"
+    ]
+  },
+  {
+    "sport": "CRICKET",
+    "gender": "Men",
+    "players": [
+      "Nishant  Shamin  Nair  (C) TE",
+      "Amol  Somnath  Gawali  TE",
+      "Sanskar  Sanjay  Bhusal  TE",
+      "Vishal  Pradip  Pardeshi  TE",
+      "Aditya  Keshav  Bhilore  BE",
+      "Khan  Hamiz  Afzal  BE",
+      "Mohit  Devendra  Rajput  SE",
+      "Rohan  Rakesh  Ghute  BE",
+      "Sahil  Rajesh  Patil  SE",
+      "Sarthak  Deepak  Kalkar  SE",
+      "Purvak  Dipak  Borsaniya  SE",
+      "Ketan  Sanjay  Chaudhari  BE",
+      "Sonu  Vilas  Chaudhari  TE",
+      "Rahul  Dattatray  Chaudhari  BE",
+      "Sujit  Anil Bhadane  TE",
+      "Sumeet  Subhash  Chaudhari  TE",
+      "Sports  Representative"
+    ]
+  },
+  {
+    "sport": "FOOTBALL",
+    "gender": "Men",
+    "players": [
+      "Khemraj Chandan Rajput  (C) TE",
+      "Uday Santosh Deore  BE",
+      "Siddhant Prashant Ghangale  SE",
+      "Sagar Liladhar Patil  BE",
+      "Pawanjeet Avinash Patil  TE",
+      "Nishant Shamin Nair  TE",
+      "Arya Samir Agharkar  TE",
+      "Anuj Pradeep Chhajed  SE",
+      "Sunil Chandrasing Vasane  SE",
+      "Harsh Chandrakant Koli  SE",
+      "Ayush Ravindra Golesar  SE",
+      "Vishal Pradip Pardeshi  TE",
+      "Amol Somnath Gawali  TE",
+      "Manish Bhojraj Ayer  BE",
+      "Neeraj Satish Patil TE",
+      "Sports  Representative"
+    ]
+  },
+  {
+    "sport": "KABADDI",
+    "gender": "Men",
+    "players": [
+      "JAYESH SANDIP BAD GUJAR  (C) BE",
+      "PREM VILAS GAWALI  TE",
+      "OM JITENDRA DEORE  TE",
+      "MAITREYA MAKARAND SUKHATME  TE",
+      "OMKAR SHANTARAM KANKATE  TE",
+      "YASHODHAN MANGESH GODSE  TE",
+      "ROSHAN JANKIRAM PAWARA  BE",
+      "OM NARESH AHIRE  SE",
+      "SWAYAM MAD HAVRAO KAMBLE  SE",
+      "NARESH BEDBAHADUR THAPA  TE",
+      "ROHAN RAKESH GHUTE  BE",
+      "AMOL SOMNATH GAWALI  TE",
+      "Sports  Representative"
+    ]
+  },
+  {
+    "sport": "SHOTPUT",
+    "gender": "Men",
+    "players": [
+      "HAMIZ AFZAL KHAN  BE",
+      "VISHAL PRADIP PARDESHI  TE",
+      "Sports  Representative"
+    ]
+  },
+  {
+    "sport": "TABLE TENNIS",
+    "gender": "Men",
+    "players": [
+      "Manish Bhojraj Ayer  BE",
+      "Sagar Liladhar Patil  BE",
+      "Anuj Pradeep Chhaj ed SE",
+      "Hamiz Afzal Khan  BE",
+      "Sports  Representative"
+    ]
+  },
+  {
+    "sport": "TUG OF WAR",
+    "gender": "Men",
+    "players": [
+      "HAMIZ AFZAL KHAN  (C) BE",
+      "NISHANT SHAMIN NAIR  TE",
+      "YASHODHAN MANGESH GODSE  TE",
+      "SUMEET SUBHASH  CHAUDHARI  TE",
+      "OM JITENDRA DEORE  TE",
+      "ARYAN SHARAD SHIRS ATH  TE",
+      "OM NARESH AHIRE  TE",
+      "MOHIB ZAHID SAYYED  SE",
+      "RUSHIKESH SURESH KALE  SE",
+      "VISHAL PRADIP PARDESHI  TE",
+      "OMKAR SHANTARAM KANKATE  TE",
+      "SARTHAK DEEPAK K ALKAR  SE",
+      "Sports  Representative"
+    ]
+  },
+  {
+    "sport": "VOLLEYBALL",
+    "gender": "Men",
+    "players": [
+      "AMOL SOMNATH GAWALI  ( C ) TE",
+      "ROHAN RAKESH GHUTE  BE",
+      "JAYESH SANDIP BADGUJAR  BE",
+      "SAGAR LILADHAR PATIL  BE",
+      "YASHODHAN MANGESH GODSE  TE",
+      "HAMIZ AFZAL KHAN  BE",
+      "MANISH BHOJRAJ AYER  BE",
+      "VISHAL PRADIP PARDESHI  TE",
+      "PAWAN LAXMAN DARADE  SE",
+      "VED CHANDRASHEKHAR BHOSALE  SE",
+      "VED AJAY RANGADE  SE",
+      "MANPRITSINGH SATNAMSINGH DIGWA  SE",
+      "AYUSH RAVINDRA GOLESAR  SE",
+      "Sports  Representative"
+    ]
+  },
+  {
+    "sport": "1 KM",
+    "gender": "Women",
+    "players": [
+      "Samnin Nazir Pathan  TE",
+      "Sports  Representative"
+    ]
+  },
+  {
+    "sport": "ATHLETICS",
+    "gender": "Women",
+    "players": [
+      "100m  Race  Mrudula  Manoj Barve  BE",
+      "Chanchal  Sandip Rathod  BE",
+      "200m  Race  Mrudula  Manoj Barve  BE",
+      "Sharwani  Chetan Samant  TE",
+      "*4  Relay  Chanchal  Sandip Rathod  BE",
+      "Varnit kaur Jasvindersingh Thakral  TE",
+      "Mrudula  Manoj Barve  BE",
+      "Sharwani  Chetan Samant  TE",
+      "Samnin  Nazir Pathan  TE",
+      "*4  Relay  Eshaa Ajay Patil  TE",
+      "Varnit kaur Jasvindersingh Thakral  TE",
+      "Mrudula  Manoj Barve  BE",
+      "Sharwani  Chetan Samant  TE",
+      "Samnin  Nazir Pathan  TE",
+      "Sports  Representative"
+    ]
+  },
+  {
+    "sport": "BASKETBALL WO",
+    "gender": "Women",
+    "players": [
+      "Samruddhi  Nitin  Bande(C)  TE",
+      "Chanchal  Anil Rathod  BE",
+      "Samnin  Nazir  Pathan  TE",
+      "Eshaa  Ajay  Patil  TE",
+      "Videesha  Anil Narsinghani  TE",
+      "Bhakti  Sujit  Pawar  TE",
+      "Gayatri  Arjunlal  Kumawat  SE",
+      "Varda  Bhateshwar  Bhat  TE",
+      "Gauri  Nitin  Bagad  TE",
+      "Saniya  Chand  Shaikh  SE",
+      "Anjali  Nana  Saindane  SE",
+      "Neha Bhaskar Shelke  SE",
+      "Sports  Representative"
+    ]
+  },
+  {
+    "sport": "CARROM",
+    "gender": "Women",
+    "players": [
+      "Samnin Nazir Pathan  (C) TE",
+      "Arpita Suresh Mahale  TE",
+      "Mansi Shashikant Metkar  TE",
+      "Ishika Kumari Sanjeet Kumar Sharma  TE",
+      "Sports  Representative"
+    ]
+  },
+  {
+    "sport": "CHESS",
+    "gender": "Women",
+    "players": [
+      "Shravani Sanjay Lad  SE",
+      "Sports  Representative"
+    ]
+  },
+  {
+    "sport": "CRICKET",
+    "gender": "Women",
+    "players": [
+      "Sharwani Chetan Samant  (C) TE",
+      "Eshaa Ajay Patil  TE",
+      "Samnin Nazir Pathan  TE",
+      "Arpita Suresh Mahale  TE",
+      "Varda Bhateshwar Bhat  TE",
+      "Videesha Anil Narsinghani  TE",
+      "Anjali Nana Saindane  SE",
+      "Gayatri Arjunlal Kumavat  SE",
+      "Akshada Santosh Shindode  SE",
+      "Samruddhi Nitin Bande  TE",
+      "Vaibhavi Prashant Thakare  SE",
+      "Varnitkaur Jasvindersingh Thak ral TE",
+      "Isha Ramniwas Sahani  SE",
+      "Simran Kuldeepsingh Choudhari  BE",
+      "Chanchal Anil Rathod  BE",
+      "Bhakti Sujit Pawar  TE",
+      "Sports  Representative"
+    ]
+  },
+  {
+    "sport": "FOOTBALL",
+    "gender": "Women",
+    "players": [
+      "Videesha Anil Narsinghani(C)  TE",
+      "Samnin Nazir Pathan  TE",
+      "Eshaa Ajay Patil  TE",
+      "Samruddhi Nitin Bande  TE",
+      "Bhakti Sujit Pawar  TE",
+      "Gayatri Arjunlal Kumawat  SE",
+      "Varnitkaur Jaswindersingh Thakral  TE",
+      "Chanchal Anil Rathod  BE",
+      "Anjali Nana Saindane  SE",
+      "Saniya Chand Shaikh  SE",
+      "Sports  Representative"
+    ]
+  },
+  {
+    "sport": "SHOTPUT",
+    "gender": "Women",
+    "players": [
+      "Saniya Chand Shaikh  SE",
+      "Sports  Representative"
+    ]
+  },
+  {
+    "sport": "TABLE TENNIS",
+    "gender": "Women",
+    "players": [
+      "Prachi  Sanjay Gaik wad(C) BE",
+      "Mehakkaur Kuldeep singh Gill  SE",
+      "Samruddhi Nitin Bande  TE",
+      "Samnin Nazir Pathan  TE",
+      "Sports  Representative"
+    ]
+  },
+  {
+    "sport": "TUG OF WAR",
+    "gender": "Women",
+    "players": [
+      "Samnin Nazir Pathan (C) TE",
+      "Arpita Suresh Mahale  TE",
+      "Eshaa Ajay Patil  TE",
+      "Janv hi Kiran Dange  TE",
+      "Videesha Anil Narsinghani  TE",
+      "Anjali Nana Saindane  SE",
+      "Gayatri Arjunlal Kumawat  SE",
+      "Samruddhi Nitin Bande  TE",
+      "Saniya Cha nd Shaikh  SE",
+      "Chanchal Anil Rathod  BE",
+      "Gauri Nitin Bagad  TE",
+      "Dhruvi Bhupesh Sugh and SE",
+      "Sports  Representative"
+    ]
+  },
+  {
+    "sport": "VOLLEYBALL WO",
+    "gender": "Women",
+    "players": [
+      "Samnin N azir Pathan( C) TE",
+      "Arpita Suresh Mahale  TE",
+      "Rohini Shahu Khairnar  SE",
+      "Neha Bhaskar Shelke  SE",
+      "Eshaa Ajay  Patil  TE",
+      "Anjali Nana Saindane  SE",
+      "Mrudula M anoj Barve  BE",
+      "Nisha Santosh Sangle  SE",
+      "Chan chal Anil Rathod  BE",
+      "Samrud dhi Nitin Bande  TE",
+      "Gayatri Arjunlal Kumawat  SE",
+      "Saniya Chand Shaikh  SE",
+      "Sports  Representative"
+    ]
+  }
+]
