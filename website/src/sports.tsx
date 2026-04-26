@@ -58,7 +58,7 @@ const Sports: React.FC = () => {
         {/* Grid of Cards */}
         <motion.div layout style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '2rem' }}>
           <AnimatePresence mode="popLayout">
-            {filteredSports.map((sport, i) => (
+            {filteredSports.map((sport) => (
               <motion.div
                 key={sport.sport + sport.gender}
                 layout

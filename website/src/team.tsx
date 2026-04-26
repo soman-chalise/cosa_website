@@ -393,13 +393,13 @@ const TeamIntro: React.FC = () => {
       x: 0,
       opacity: 1,
       scale: 1,
-      transition: { duration: 0.5, ease: [0.25, 0.8, 0.25, 1] }
+      transition: { duration: 0.5, ease: [0.25, 0.8, 0.25, 1] as any }
     },
     exit: (direction: number) => ({
       x: direction > 0 ? -30 : 30,
       opacity: 0,
       scale: 0.98,
-      transition: { duration: 0.4, ease: [0.25, 0.8, 0.25, 1] }
+      transition: { duration: 0.4, ease: [0.25, 0.8, 0.25, 1] as any }
     })
   };
 
@@ -627,7 +627,7 @@ const TeamIntro: React.FC = () => {
                   {/* Huge Background Number */}
                   <motion.div
                     className="huge-number"
-                    animate={{ WebkitTextStrokeColor: `color-mix(in srgb, ${member.color} 20%, transparent)` }}
+                    animate={{ WebkitTextStrokeColor: `color-mix(in srgb, ${member.color} 20%, transparent)` } as any}
                     transition={{ duration: 0.8 }}
                     style={{
                       fontWeight: 900,
