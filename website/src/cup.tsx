@@ -185,8 +185,8 @@ const HouseCup: React.FC<{ onExplore?: () => void }> = ({ onExplore }) => {
           {/* LAYER 2: member.png — arrives after cup settles */}
           <motion.div style={{
             position: 'absolute',
-            bottom: '1vh',
-            left: '50%',
+            bottom: '-10vh',
+            left: '52%',
             x: '-50%',
             width: 'clamp(420px, 62vw, 880px)',
             y: memberY,
@@ -194,7 +194,7 @@ const HouseCup: React.FC<{ onExplore?: () => void }> = ({ onExplore }) => {
             pointerEvents: 'none',
           }}>
             <img
-              src="member.png"
+              src="team.png"
               alt="COSA Team"
               style={{ width: '100%', height: 'auto', display: 'block' }}
             />
@@ -203,16 +203,16 @@ const HouseCup: React.FC<{ onExplore?: () => void }> = ({ onExplore }) => {
           {/* LAYER 3: trophy.png — arrives last, snaps into place */}
           <motion.div style={{
             position: 'absolute',
-            bottom: '-10vh',
+            bottom: '0vh',
             left: '50%',
             x: '-50%',
-            width: 'clamp(380px, 56vw, 800px)',
+            width: 'clamp(180px, 34vw, 420px)',
             y: trophyY,
             zIndex: 15,
             pointerEvents: 'none',
           }}>
             <img
-              src="trophy.png"
+              src="image-Photoroom.png"
               alt="Trophies"
               style={{ width: '100%', height: 'auto', display: 'block' }}
             />

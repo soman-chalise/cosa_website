@@ -75,20 +75,20 @@ const TextWipe: React.FC<{
 
   const textStyle: React.CSSProperties = isRole
     ? {
-        fontSize: '0.85rem',
-        fontWeight: 800,
-        textTransform: 'uppercase',
-        letterSpacing: '0.15em',
-        margin: '0 0 12px 0',
-        whiteSpace: 'nowrap',
-      }
+      fontSize: '0.85rem',
+      fontWeight: 800,
+      textTransform: 'uppercase',
+      letterSpacing: '0.15em',
+      margin: '0 0 12px 0',
+      whiteSpace: 'nowrap',
+    }
     : {
-        fontSize: 'clamp(1.5rem, 3vw, 2.5rem)',
-        fontWeight: 900,
-        lineHeight: 1.1,
-        margin: 0,
-        whiteSpace: 'nowrap',
-      };
+      fontSize: 'clamp(1.5rem, 3vw, 2.5rem)',
+      fontWeight: 900,
+      lineHeight: 1.1,
+      margin: 0,
+      whiteSpace: 'nowrap',
+    };
 
   const baseColor = isRole ? theme.goldLight : theme.textBase;
   const revealColor = isRole ? theme.gold : theme.textDark;
@@ -152,7 +152,7 @@ const MemberCard: React.FC<Omit<MemberProps, 'desc'>> = ({
   const photoW = 'clamp(140px, 16vw, 220px)';
   const photoH = 'clamp(180px, 20vw, 280px)';
 
-  const containerLeft  = side === 'left'  ? '12vw' : 'auto';
+  const containerLeft = side === 'left' ? '12vw' : 'auto';
   const containerRight = side === 'right' ? '6vw' : 'auto';
 
   const wipeAlign: 'left' | 'right' = side === 'left' ? 'left' : 'right';
@@ -257,7 +257,7 @@ const MemberCard: React.FC<Omit<MemberProps, 'desc'>> = ({
             align={wipeAlign}
           />
         </div>
-        
+
         <TextWipe
           text={name}
           scrollYProgress={scrollYProgress}
@@ -277,9 +277,9 @@ const ZFacultyPanel: React.FC = () => {
     offset: ['start start', 'end end'],
   });
 
-  const xHod    = useTransform(scrollYProgress, [0.00, 0.15], ['-110%', '0%']);
-  const xPramod = useTransform(scrollYProgress, [0.28, 0.43], ['110%',  '0%']);
-  const xGauri  = useTransform(scrollYProgress, [0.56, 0.71], ['-110%', '0%']);
+  const xHod = useTransform(scrollYProgress, [0.00, 0.15], ['-110%', '0%']);
+  const xPramod = useTransform(scrollYProgress, [0.28, 0.43], ['110%', '0%']);
+  const xGauri = useTransform(scrollYProgress, [0.56, 0.71], ['-110%', '0%']);
 
   return (
     <div ref={ref} style={{ height: '500vh', position: 'relative' }}>
@@ -309,7 +309,7 @@ const ZFacultyPanel: React.FC = () => {
         {/* Decorative Background Elements */}
         <div style={{ position: 'absolute', top: '-10%', right: '-5%', width: '40vw', height: '40vw', borderRadius: '50%', border: `1px solid ${theme.goldLight}`, opacity: 0.5, pointerEvents: 'none' }} />
         <div style={{ position: 'absolute', top: '-5%', right: '-10%', width: '50vw', height: '50vw', borderRadius: '50%', border: `1px solid ${theme.goldLight}`, opacity: 0.3, pointerEvents: 'none' }} />
-        
+
         <div style={{ position: 'absolute', bottom: '-20%', right: '10%', width: '40vw', height: '40vw', borderRadius: '50%', background: `radial-gradient(circle, ${theme.goldLight} 0%, transparent 60%)`, filter: 'blur(40px)', pointerEvents: 'none' }} />
         <div style={{ position: 'absolute', bottom: '-5%', left: '-5%', width: '30vw', height: '30vw', borderRadius: '50%', border: `1px solid ${theme.goldLight}`, opacity: 0.4, pointerEvents: 'none' }} />
 
@@ -332,9 +332,9 @@ const ZFacultyPanel: React.FC = () => {
 
         <MemberCard
           index="01"
-          name="Dr. Neta Thakre"
+          name="Dr. Nita Thakare"
           role="Head of Department"
-          photo="photo.jpg"
+          photo="hod.png"
           side="left"
           top="8vh"
           xImage={xHod}
@@ -346,7 +346,7 @@ const ZFacultyPanel: React.FC = () => {
           index="02"
           name="Pramod Patil"
           role="Coordinator I"
-          photo="image.png"
+          photo="pramodsir.png"
           side="right"
           top="34vh"
           xImage={xPramod}
@@ -356,9 +356,9 @@ const ZFacultyPanel: React.FC = () => {
 
         <MemberCard
           index="03"
-          name="Gauri Pauranic"
+          name="Gauri Puranic"
           role="Coordinator II"
-          photo="team.jpeg"
+          photo="gaurimam.png"
           side="left"
           top="60vh"
           xImage={xGauri}
